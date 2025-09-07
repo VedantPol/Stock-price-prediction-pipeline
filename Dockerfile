@@ -11,15 +11,18 @@ ENV PATH="${APP_HOME}/.venv/bin:$PATH"
 
 # System deps
 RUN apt-get update \
- && apt-get install -y --no-install-recommends gcc curl ca-certificates build-essential \
+ && apt-get install -y --no-install-recommends \
+      build-essential gcc g++ libstdc++6 libgcc-s1 curl ca-certificates \
  && rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR $APP_HOME
 
 # Copy and install requirements first for cache
 COPY requirements.txt .
-RUN python -m pip install --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --upgrade pip setuptools wheel \
+ && pip install --no-cache-dir --prefer-binary -r requirements.txt
+
 
 # Copy app code
 COPY . .
