@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  etl:
+    image: YOUR_DOCKERHUB_USERNAME/nifty-etl:latest
+    container_name: nifty_etl_app
+    restart: unless-stopped
+    environment:
+      - DATA_DIR=/data/nifty_data
+      - RUN_INTERVAL_SECONDS=86400
+    volumes:
+      - ./data:/data   # host data folder (NOT in git)

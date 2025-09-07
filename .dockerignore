@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+.env
+data
+.DS_Store
+.vscode
+.git
+.gitignore
+*.sqlite
+*.duckdb
