@@ -2,9 +2,8 @@ __pycache__
 *.pyc
 .env
 data
+nifty_data
 .DS_Store
 .vscode
 .git
 .gitignore
-*.sqlite
-*.duckdb

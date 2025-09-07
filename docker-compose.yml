@@ -2,11 +2,12 @@ version: "3.8"
 
 services:
   etl:
-    image: YOUR_DOCKERHUB_USERNAME/nifty-etl:latest
-    container_name: nifty_etl_app
-    restart: unless-stopped
+    build: .
+    image: "${DOCKERHUB_USERNAME:-yourdockerhubusername}/nifty-etl:local"
+    container_name: nifty_etl_local
+    restart: "no"
+    volumes:
+      - ./nifty_data:/data/nifty_data   # keep sample data mounted for local dev
     environment:
       - DATA_DIR=/data/nifty_data
       - RUN_INTERVAL_SECONDS=86400
-    volumes:
-      - ./data:/data   # host data folder (NOT in git)
